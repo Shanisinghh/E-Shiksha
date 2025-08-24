@@ -75,7 +75,7 @@ function CreateCourse() {
               </option>
               <option value="Frontend Development">Frontend Development</option>
               <option value="Backend Development">Backend Development</option>
-              <option value="ai">AI / ML</option>
+              <option value="AI / ML">AI / ML</option>
               <option value="UI UX Designing">UI UX Designing</option>
               <option value="App Development">App Development</option>
               <option value="Ethical Hacking">Ethical Hacking</option>

@@ -64,7 +64,7 @@ function Courses() {
     )
   } 
   return (
-    <div className=" mt-17 max-w-[95vw]  m-auto ">
+    <div className=" mt-17 max-w-[95vw] min-h-[90vh]  m-auto ">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="md:text-xl text-lg font-semibold">

@@ -6,9 +6,12 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { serverURL } from "../main";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function ViewLecture() {
   const { courseId } = useParams();
+  const { user } = useSelector((state) => state.user);
   const [currentLecture, setCurrentLecture] = useState(null);
   const [course, setCourse] = useState({});
 
@@ -21,8 +24,14 @@ function ViewLecture() {
         const response = await axios.get(
           `${serverURL}/api/courses/getcoursebyid/${courseId}`
         );
-        setCourse(response.data);
-        console.log(response.data);
+        if (response.data.enrolledStudents.includes(user._id)) {
+          setCourse(response.data);
+        } else {
+          navigate("/");
+          toast.error("You are not enrolled in this course");
+        }
+
+        console.log(response.data.enrolledStudents);
       } catch (error) {
         console.log(error);
       }
@@ -96,7 +105,7 @@ function ViewLecture() {
         </p>
         <h3 className="font-semibold text-md mb-3">All Lectures</h3>
 
-        <div className="flex flex-col overflow-y-scroll lg:h-[43vh] h-[40vh] scrollbar-hide py-1.5 gap-2">
+        <div className="flex flex-col overflow-y-scroll lg:h-[46vh] h-[40vh] scrollbar-hide py-1.5 gap-2">
           {course.lectures?.length ? (
             course.lectures.map((lecture) => (
               <button
@@ -135,9 +144,10 @@ function ViewLecture() {
               />
               <div>
                 <p className="font-medium">{course.creator.name}</p>
-                <p className="text-sm text-gray-500">{course.creator.discription}</p>
+                <p className="text-sm text-gray-500">
+                  {course.creator.discription}
+                </p>
                 <p className="text-xs text-gray-500">{course.creator.email}</p>
-                
               </div>
             </div>
           </div>

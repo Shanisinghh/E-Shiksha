@@ -15,7 +15,7 @@ import { Provider, useSelector } from "react-redux";
 
 export const serverURL = "http://localhost:5000";
 
-// ✅ Lazy-loaded Pages
+//  Lazy-loaded Pages
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const SignUp = lazy(() => import("./pages/SignUp.jsx"));
@@ -41,6 +41,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy.jsx"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions.jsx"));
 const FAQ = lazy(() => import("./pages/FAQ.jsx"));
 const RefundPolicy = lazy(() => import("./pages/RefundPolicy.jsx"));
+const SearchWithAI = lazy(()=>import("./pages/SearchWithAI.jsx"))
 
 // ProtectedRoute wrapper
 function ProtectedRoute({ children }) {
@@ -79,6 +80,7 @@ const router = createBrowserRouter(
       <Route path="termsandconditions" element={<TermsAndConditions />} />
       <Route path="faq" element={<FAQ />} />
       <Route path="refundpolicy" element={<RefundPolicy />} />
+      <Route path="search" element={<SearchWithAI />} />
       <Route path="*" element={<NotFound />} />
 
       {/* Educator Routes */}
@@ -172,7 +174,6 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <Provider store={store}>
-        {/* ✅ Wrap Router in Suspense for lazy loading */}
         <Suspense fallback={<Loader />}>
           <RouterProvider router={router} />
         </Suspense>

@@ -38,7 +38,7 @@ function Home() {
           <button onClick={() => navigate("/allcourses")} className="text-white px-6 cursor-pointer py-2 border border-white rounded-sm hover:bg-[#292727] active:bg-[#292727] transition">
             View all courses
           </button>
-          <button className="text-black px-6 cursor-pointer py-2 flex items-center justify-center gap-2 rounded-sm border bg-white border-white hover:bg-[#f1e7e7] active:bg-[#ece2e2] transition">
+          <button onClick={()=>navigate("/search")} className="text-black px-6 cursor-pointer py-2 flex items-center justify-center gap-2 rounded-sm border bg-white border-white hover:bg-[#f1e7e7] active:bg-[#ece2e2] transition">
             Search with AI <LuSearch className="text-lg" />
           </button>
         </div>

@@ -12,6 +12,7 @@ import { LiaHandPointRight } from "react-icons/lia";
 import { FaPlay, FaPause } from "react-icons/fa";
 import Loader from "../components/Loader";
 import ReviewBox from "../components/ReviewBox";
+import { getCurrentUser } from "../costumHools/getCurrentUser";
 
 function ViewCourse() {
   const user = useSelector((state) => state.user?.user);

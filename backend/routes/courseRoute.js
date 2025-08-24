@@ -3,6 +3,7 @@ import { createCourse, getPublishedCourses, getCreaterCourses, updateCourse, get
 import { isAuth } from '../middlewares/isAuth.js';
 import { upload } from '../middlewares/multer.js';
 import { createReview } from '../controllers/rewiewController.js';
+import { searchWithAI } from '../controllers/searchController.js';
 
 const courseRouter = express.Router();
 
@@ -24,5 +25,8 @@ courseRouter.delete('/deletelecture/:lectureId', isAuth, removeLecture);
 
 // review routes
 courseRouter.post('/createreview', isAuth, createReview);
+
+//for search
+courseRouter.post('/search', searchWithAI);
 
 export default courseRouter;

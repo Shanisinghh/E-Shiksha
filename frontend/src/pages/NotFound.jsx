@@ -17,7 +17,7 @@ export default function NotFound() {
         to="/"
         className="px-6 py-2 rounded-sm bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md"
       >
-        Go Home
+        Go to Home
       </Link>
       <FaArrowLeft
         className="font-bold text-black  top-15 p-0.5 rounded-full fixed left-2 text-3xl active:scale-103 hover:scale-103 z-10 cursor-pointer"

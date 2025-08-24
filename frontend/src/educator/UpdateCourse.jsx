@@ -95,7 +95,7 @@ function UpdateCourse() {
     try {
       const response = await axios.post(
         `${serverURL}/api/courses/update/${courseId}`,
-        { ...formData, thumbnail, isPublished: !isPublished },
+        { ...formData, thumbnail, isPublished: isPublished },
         {
           withCredentials: true,
           headers: { "Content-Type": "multipart/form-data" },
@@ -103,8 +103,8 @@ function UpdateCourse() {
       );
 
       isPublished
-        ? toast.success("Course unpublished successfully")
-        : toast.success("Course published successfully");
+        ? toast.success( "Course Published successfully")
+        : toast.success( "Course Unpublished successfully");
       setDeleteLoading(false);
       setLoading(false);
 
@@ -172,7 +172,7 @@ function UpdateCourse() {
             <button
               type="button"
               className={`px-8 py-1.5 md:h-[34px] text-sm w-[50%] md:w-auto cursor-pointer rounded border ${
-                !isPublished
+                isPublished
                   ? "bg-green-500 text-white border-black"
                   : "bg-white border-gray-300"
               }`}
@@ -183,7 +183,7 @@ function UpdateCourse() {
             <button
               type="button"
               className={`px-8 py-1.5 md:h-[34px] text-sm w-[50%] md:w-auto cursor-pointer rounded border ${
-                isPublished
+                !isPublished
                   ? "bg-red-500 text-white border-black"
                   : "bg-white border-gray-300"
               }`}
