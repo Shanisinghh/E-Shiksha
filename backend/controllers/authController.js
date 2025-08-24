@@ -155,7 +155,7 @@ export async function googleAuth(req, res) {
   try {
     const { email, name, role, photoUrl } = req.body;
     // console.log("Google Auth Request:", { email, name, role, photoUrl });
-
+    console.log({ email, name, role, photoUrl });
     let user = await User.findOne({ email });
 
 
@@ -164,8 +164,8 @@ export async function googleAuth(req, res) {
       user = await User.create({
         email,
         name,
-        role: role || "student", // default role
-        photoUrl: photo,
+        role: role || "Student", // default role
+        photoUrl: photoUrl || "",
       });
     } else {
       // If user exists → update profile data (optional)
@@ -204,4 +204,5 @@ export async function googleAuth(req, res) {
     });
   }
 }
+
 
