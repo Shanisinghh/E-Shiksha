@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://e-shiksha-v1vah1owm-shanisinghhs-projects.vercel.app",
+      "https://e-shiksha-tau.vercel.app",
     ],
     credentials: true,
   })
