@@ -56,7 +56,7 @@ function Courses() {
     }
   }
 
-  if(courses.length === 0){
+  if(courses.length === null){
     return (
       <div className="">
        <Loader />

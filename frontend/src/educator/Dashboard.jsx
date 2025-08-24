@@ -77,7 +77,7 @@ export default function Dashboard() {
     }
   }, [courses]);
 
-  if (courses.length === 0) {
+  if (courses.length === null) {
     return <div><Loader /></div>;
   }
 
