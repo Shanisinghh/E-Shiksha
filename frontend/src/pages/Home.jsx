@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import AboutUsHero from "../components/AboutUsHero";
 import Reviews from "../components/Reviews";
 
+
 function Home() {
   getCurrentUser();
   const navigate = useNavigate();

@@ -13,10 +13,7 @@ import store from "./redux/store.js";
 import { Provider, useSelector } from "react-redux";
 
 
-export const serverURL = 
-    window.location.hostname === "localhost"
-      ? "http://localhost:5000"
-      : "https://e-shiksha-fain.onrender.com";
+export const serverURL = "https://e-shiksha-fain.onrender.com";
 
 //  Lazy-loaded Pages
 const Home = lazy(() => import("./pages/Home.jsx"));
