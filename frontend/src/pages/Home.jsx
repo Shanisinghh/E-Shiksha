@@ -8,7 +8,7 @@ import ExploreCourses from "../components/ExploreCourses";
 import OurPopularCourses from "../components/OurPopularCources";
 import { useNavigate } from "react-router-dom";
 import AboutUsHero from "../components/AboutUsHero";
-import Reviews from "../components/reviews";
+import Reviews from "../components/Reviews";
 
 function Home() {
   getCurrentUser();
