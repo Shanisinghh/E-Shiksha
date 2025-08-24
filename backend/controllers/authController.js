@@ -81,7 +81,11 @@ export async function logIn(req, res) {
 
 export async function logOut(req, res) {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production" ? true : false, // true in prod
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Required for cross-site cookies
+    });
     return res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     return res.status(500).json({ message: "Server error" + error });
