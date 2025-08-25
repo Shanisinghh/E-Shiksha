@@ -45,7 +45,7 @@ function ViewLecture() {
     }
   }, [course]);
 
-  if (!course) {
+  if (!course || !course.lectures || course.lectures.length === 0) {
     return (
       <div>
         <Loader />

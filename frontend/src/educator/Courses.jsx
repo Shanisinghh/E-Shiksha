@@ -21,6 +21,7 @@ function Courses() {
   // Fetch all courses
   useEffect(() => {
     async function getCourses() {
+      setLoading(true);
       try {
         const response = await axios.get(
           `${serverURL}/api/courses/getcreatorcourses`,
@@ -30,15 +31,16 @@ function Courses() {
         );
         console.log(response);
         setCourses(response.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     }
     getCourses();
   }, [relode]);
 
   async function handleDelete(courseId) {
-    setLoading(true);
     console.log(courseId);
     try {
       const response = await axios.delete(
@@ -49,20 +51,17 @@ function Courses() {
       );
       toast.success(response?.data?.message);
       setRelode(!relode);
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       toast.error(error?.response?.data?.message || "Something went wrong");
     }
   }
 
-  if(courses.length === null){
+  if (loading) {
     return (
-      <div className="">
-       <Loader />
-      </div>
-    )
-  } 
+        <Loader />
+    );
+  }
+
   return (
     <div className=" mt-17 max-w-[95vw] min-h-[90vh]  m-auto ">
       {/* Header */}

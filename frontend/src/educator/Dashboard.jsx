@@ -23,11 +23,14 @@ export default function Dashboard() {
   const [courses, setCourses] = useState([]);
   const [totalEarnings, setTotalEarnings] = useState(0);
 
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const user = useSelector((state) => state.user?.user);
 
   // Fetch all courses
   useEffect(() => {
+    setLoading(true);
     async function getCourses() {
       try {
         const response = await axios.get(
@@ -37,8 +40,10 @@ export default function Dashboard() {
           }
         );
         setCourses(response.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     }
     getCourses();
@@ -67,19 +72,19 @@ export default function Dashboard() {
     }
   }, [courses]);
 
-  console.log(courses[0]?.price*courses[0]?.enrolledStudents?.length);
+  console.log(courses[0]?.price * courses[0]?.enrolledStudents?.length);
   useEffect(() => {
     if (courses.length > 0) {
       const totalEarnings = courses.reduce((acc, course) => {
-        return acc + (course.price * (course.enrolledStudents?.length || 0));
+        return acc + course.price * (course.enrolledStudents?.length || 0);
       }, 0);
       setTotalEarnings(totalEarnings);
     }
   }, [courses]);
 
-  if (courses.length === null) {
-    return <div><Loader /></div>;
-  }
+  // if (loading) {
+  //   return <div><Loader /></div>;
+  // }
 
   return (
     <div className="p-2 relative bg-[#f3f4f6] md:p-6 md:mt-12 mt-15 space-y-6">
@@ -116,37 +121,43 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Course Progress */}
-        <div className="bg-white shadow-lg   rounded-lg p-4">
-          <h3 className="text-sm font-semibold mb-4">
-            Course Progress (Lectures)
-          </h3>
-          <ResponsiveContainer width="100%" height={330}>
-            <BarChart className="ml-[-30px] md:ml-0" data={progressData}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="value" fill="black" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
+      {loading ? (
+        <div className="flex justify-center">
+          <Loader />
         </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Course Progress */}
+          <div className="bg-white shadow-lg   rounded-lg p-4">
+            <h3 className="text-sm font-semibold mb-4">
+              Course Progress (Lectures)
+            </h3>
+            <ResponsiveContainer width="100%" height={330}>
+              <BarChart className="ml-[-30px] md:ml-0" data={progressData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" fill="black" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
 
-        {/* Student Enrollment */}
-        <div className=" bg-white shadow-lg   rounded-lg p-4">
-          <h3 className="text-sm font-semibold mb-4">Student Enrollment</h3>
-          <ResponsiveContainer width="100%" height={330}>
-            <BarChart className="ml-[-30px] md:ml-0" data={enrollmentData}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="value" fill="black" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
+          {/* Student Enrollment */}
+          <div className=" bg-white shadow-lg   rounded-lg p-4">
+            <h3 className="text-sm font-semibold mb-4">Student Enrollment</h3>
+            <ResponsiveContainer width="100%" height={330}>
+              <BarChart className="ml-[-30px] md:ml-0" data={enrollmentData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" fill="black" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
-      </div>
+      )}
       <FaArrowLeft
         className="font-bold text-black  top-15 p-0.5 rounded-full fixed left-2 text-3xl active:scale-103 hover:scale-103 z-10 cursor-pointer"
         onClick={() => navigate(-1)}

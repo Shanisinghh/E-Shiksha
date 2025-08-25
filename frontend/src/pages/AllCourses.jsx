@@ -6,6 +6,8 @@ import axios from "axios";
 import { serverURL } from "../main";
 import CourseBox from "../components/CourseBox";
 import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
+import getAllCourses from "../costumHools/getAllCourses";
 
 // Category List
 const categories = [
@@ -30,29 +32,17 @@ function AllCourses() {
   const [selectedPrice, setSelectedPrice] = useState("");
 
   const navigate = useNavigate();
+  getAllCourses();
 
-  const [courses, setCourses] = useState([]);
+  const courses = useSelector((state) => state.course.coursesData);
   const [coursesData, setCoursesData] = useState([]);
 
   useEffect(() => {
-    const publishedCoursesList = courses.filter((course) => course.isPublished);
+    const publishedCoursesList = courses?.filter((course) => course.isPublished);
     setCoursesData(publishedCoursesList);
   }, [courses]);
 
-  // Fetch all courses
-  useEffect(() => {
-    async function getCourses() {
-      try {
-        const response = await axios.get(`${serverURL}/api/courses/getCourses`, {
-          withCredentials: true,
-        });
-        setCourses(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getCourses();
-  }, []);
+
 
   // Toggle category selection (multi-select)
   const handleCategoryClick = (category) => {
@@ -97,13 +87,7 @@ function AllCourses() {
     }
   }
 
-  if (courses.length === null) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  }
+
 
   return (
     <>

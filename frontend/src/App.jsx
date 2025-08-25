@@ -6,8 +6,10 @@ import { Outlet } from "react-router-dom";
 import { getCurrentUser } from "./costumHools/getCurrentUser";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import getAllCourses from "./costumHools/getAllCourses";
 
 function App() {
+  getAllCourses();
   getCurrentUser();
   return (
     <>

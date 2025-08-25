@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Loader() {
 return (
-<div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+<div className="flex flex-col items-center justify-center min-h-screen  bg-gray-100">
 <div className="relative flex items-center justify-center">
 {/* Outer Ring */}
 <div className=" w-13 h-13 border-5 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>

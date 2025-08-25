@@ -6,28 +6,13 @@ import { serverURL } from "../main";
 import { useEffect } from "react";
 import { useState } from "react";
 import CourseBox from "./CourseBox";
+import { useSelector } from "react-redux";
+import getAllCourses from "../costumHools/getAllCourses";
 
-// const courses = [
-//   {
-//     id: 1,
-//     title: "Complete HTML Course",
-//     category: "Web Development",
-//     price: 199,
-//     rating: 5,
-//     image: "https://i.ibb.co/g36fQ45/html-course.png", // replace with your image
-//   },
-//   {
-//     id: 2,
-//     title: "Complete CSS Course",
-//     category: "Web Development",
-//     price: 199,
-//     rating: 5,
-//     image: "https://i.ibb.co/g97nZXQ/css-course.png", // replace with your image
-//   },
-// ];
+
 
 function OurPopularCourses() {
-  const [courses, setCourses] = useState([]);
+  const courses = useSelector((state) => state.course.coursesData);
   let [publishedCourses, setPublishedCourses] = useState([]);
 
   useEffect(() => {
@@ -50,25 +35,6 @@ function OurPopularCourses() {
   }
 
   publishedCourses = publishedCourses.slice(0, 8);
-
-  // Fetch all courses
-  useEffect(() => {
-    async function getCourses() {
-      try {
-        const response = await axios.get(
-          `${serverURL}/api/courses/getCourses`,
-          {
-            withCredentials: true,
-          }
-        );
-        console.log(response);
-        setCourses(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getCourses();
-  }, []);
 
   return (
     <div className="py-12 px-1 md:px-6 lg:px-1">
