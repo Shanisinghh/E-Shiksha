@@ -74,11 +74,11 @@ function ViewLecture() {
             </video>
           </div>
         ) : currentLecture ? (
-          <div className="w-full bg-black h-[32vh] lg:h-[75vh] text-md rounded-t-md flex items-center justify-center">
+          <div className="w-full bg-black h-[28vh] lg:h-[75vh] text-md rounded-t-md flex items-center justify-center">
             <p className="text-gray-500">Video not available</p>
           </div>
         ) : (
-          <div className="w-full lg:h-[75vh] h-[32vh] bg-black text-md rounded-t-md flex items-center justify-center">
+          <div className="w-full lg:h-[75vh] h-[28vh] bg-black text-md rounded-t-md flex items-center justify-center">
             <p className="text-gray-500">Video not available</p>
           </div>
         )}

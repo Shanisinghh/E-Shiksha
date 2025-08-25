@@ -162,25 +162,25 @@ function ViewCourse() {
         <img
           src={course?.thumbnail}
           alt="Course Banner"
-          className="rounded-lg lg:h-[60vh] lg:w-[45vw] shadow-sm"
+          className="rounded-lg lg:h-[60vh] w-full h-[28vh] bg-black lg:w-[45vw] shadow-sm"
         />
 
         <div>
-          <h2 className="text-2xl font-bold mb-1">{course?.title}</h2>
+          <h2 className="text-2xl font-bold mb-1">{course?.title||"Course Title"}</h2>
           <p className="text-gray-600 ">
             Learn {course?.category?.toUpperCase()}
           </p>
-          <p className="text-gray-600 my-1">{course?.description}</p>
+          <p className="text-gray-600 my-1">{course?.description || "Course Description"}</p>
           <p className=" mb-2">
             {averageRating}⭐
               ({course?.reviews?.length} reviews)
           </p>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-2xl font-bold text-black">
-              ₹{course?.price}
+              ₹{course?.price || 0}
             </span>
             <span className="line-through text-gray-500">
-              {course?.price + 150}
+              {course?.price + 150 || 0}
             </span>
           </div>
           <ul className="text-sm text-gray-600 mb-1 space-y-1">
