@@ -85,9 +85,9 @@ function ViewLecture() {
 
         {currentLecture && (
           <div className="p-3">
-            <h3 className=" font-semibold text-xl">{currentLecture.title}</h3>
+            <h3 className=" font-semibold text-xl">{currentLecture.title||"Lecture Title"}</h3>
             <p className="text-gray-500 text-sm">
-              {currentLecture.description}
+              {currentLecture.description||"Lecture Description"}
             </p>
           </div>
         )}
@@ -96,12 +96,12 @@ function ViewLecture() {
       {/* Right Section - Lectures + Instructor */}
       <div className="w-full lg:w-1/3 bg-white rounded-lg shadow-md py-4 px-3">
         <div className="flex items-center gap-2 mb-3">
-          <h2 className="text-xl md:text-2xl font-semibold">{course.title}</h2>
+          <h2 className="text-xl md:text-2xl font-semibold">{course.title||"Course Title"}</h2>
         </div>
 
         <p className="text-gray-500 text-md mb-2">
-          Category: <span className="font-medium">{course.category}</span> |
-          Level: <span className="font-medium">{course.level}</span>
+          Category: <span className="font-medium">{course.category||"Category"}</span> |
+          Level: <span className="font-medium">{course.level||"Level"}</span>
         </p>
         <h3 className="font-semibold text-md mb-3">All Lectures</h3>
 
